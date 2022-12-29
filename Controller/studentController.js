@@ -405,28 +405,37 @@ exports.generateCertificate = (req, res) => {
 }
 
 exports.streamVideo = (req, res) => {
-    console.log("krishna")
-    const range = req.headers.range;
-    if (!range) {
-        res.status(400).send("Requires Range header");
+    const filePath = 'C:/Users/ram23/Desktop/Query/liveWallaper.mp4';
+    if (!fs.existsSync(filePath)) {
+        return res.status(404).json({ data: 'OMFG file not found' });
     }
-    console.log("krishna1")
-    const videoPath = "C:/Users/ram23/Desktop/Query/EP-1039.mp4";
-    const videoSize = fs.statSync("EP-1039.mp4").size;
-    const CHUNK_SIZE = 10 ** 6;
-    const start = Number(range.replace(/\D/g, ""));
-    console.log("krishn2")
-    const end = Math.min(start + CHUNK_SIZE, videoSize - 1);
-    const contentLength = end - start + 1;
-    console.log("krishna3")
-    const headers = {
-        "Content-Range": `bytes ${start}-${end}/${videoSize}`,
-        "Accept-Ranges": "bytes",
-        "Content-Length": contentLength,
-        "Content-Type": "video/mp4",
-    };
-    res.writeHead(206, headers);
-    const videoStream = fs.createReadStream(videoPath, { start, end });
-    videoStream.pipe(res);
-    console.log("krishna4")
+    const stat = fs.statSync(filePath);
+    const fileSize = stat.size;
+    const range = req.headers.range;
+    if (range) {
+        let parts = range.replace(/bytes=/, '').split('-');
+        let start = parseInt(parts[0], 10);
+        let end = parts[1] ? parseInt(parts[1], 10) : fileSize - 1;
+        let chunkSize = end - start + 1;
+        let file = fs.createReadStream(filePath, {
+            start,
+            end,
+        });
+        let headers = {
+            'Content-Range': `bytes ${start}-${end}/${fileSize}`,
+            'Accept-Ranges': 'bytes',
+            'Content-Length': chunkSize,
+            'Content-Type': 'video/mp4',
+        };
+
+        res.writeHead(206, headers);
+        file.pipe(res);
+    } else {
+        const head = {
+            'Content-Length': fileSize,
+            'Content-Type': 'video/mp4',
+        };
+        res.writeHead(200, head);
+        fs.createReadStream(filePath).pipe(res);
+    }
 }
