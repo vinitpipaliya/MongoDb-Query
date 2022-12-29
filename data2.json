@@ -1,0 +1,42 @@
+[
+    {
+        "name": "vinit",
+        "salary": 1000
+    },
+    {
+        "name": "saueav",
+        "salary": 900
+    },
+    {
+        "name": "vijay",
+        "salary": 100
+    },
+    {
+        "name": "chirag",
+        "salary": 200
+    },
+    {
+        "name": "yash",
+        "salary": 300
+    },
+    {
+        "name": "parth",
+        "salary": 400
+    },
+    {
+        "name": "mihir",
+        "salary": 440
+    },
+    {
+        "name": "prince",
+        "salary": 450
+    },
+    {
+        "name": "neel",
+        "salary": 700
+    },
+    {
+        "name": "rohan",
+        "salary": 1000
+    }
+]

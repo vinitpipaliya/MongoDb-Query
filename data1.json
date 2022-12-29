@@ -1,0 +1,47 @@
+[
+
+
+    {
+        "name": "ghee",
+            "price": 1000
+    },
+    {
+        "name": "gol",
+            "price": 60
+    },
+    {
+        "name": "cha",
+            "price": 100
+    },
+    {
+        "name": "khand",
+            "price": 40
+    },
+    {
+        "name": "coffee",
+            "price": 100
+    },
+    {
+        "name": "milk",
+            "price": 70
+    },
+    {
+        "name": "chash",
+            "price": 40
+    },
+    {
+        "name": "dabeli",
+            "price": 25
+    },
+    {
+        "name": "vadapav",
+            "price": 30
+    },
+    {
+
+        "name": "pavbhaji",
+            "price": 100
+    }
+]
+
+

@@ -1,0 +1,617 @@
+<style>
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+.text h5 {
+  line-height: 1.6;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Oswald", sans-serif;
+  text-align: center;
+}
+a {
+  display: inline-block;
+  text-decoration: none;
+}
+ul li {
+  list-style: none;
+}
+img {
+  width: 100%;
+}
+
+.main {
+  width: 100%;
+  display: table;
+}
+.mainFlex {
+  display: flex;
+  width: 100%;
+}
+.container {
+  width: 80%;
+  margin: 0px auto;
+}
+.posRel {
+  position: relative;
+}
+.flexCol {
+  flex-direction: column;
+}
+.flexWrap {
+  flex-wrap: wrap;
+}
+.contDisp {
+  display: flex;
+  align-items: center;
+  height: 111vh;
+}
+.allCenter {
+  justify-content: center;
+  align-items: center;
+}
+.spaceA {
+  justify-content: space-around;
+  align-items: center;
+}
+.spaceB {
+  justify-content: space-between;
+  align-items: center;
+}
+.spaceE {
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo {
+  width: 22%;
+}
+.certiComp {
+  margin-top: 20px;
+}
+
+.certiComp h2 {
+  text-transform: uppercase;
+  color: rgb(0, 33, 68);
+  font-size: 3vw;
+  letter-spacing: 1;
+  font-weight: 900;
+  margin-bottom: 10px;
+}
+
+.certiComp h6 {
+  margin-bottom: 10px;
+  font-size: 1.1vw;
+  font-weight: 400;
+}
+.certiComp h4 {
+  margin-bottom: 10px;
+  color: rgb(0, 33, 68);
+  font-size: 2vw;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+.text {
+  margin: 15px 0px;
+}
+.text h5 {
+  font-size: 18px;
+  font-weight: 400;
+  margin-bottom: 10px;
+}
+.text p {
+  margin-bottom: 10px;
+  font-size: 18px;
+  font-weight: 400;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.sign {
+  margin: 45px 0px 5px;
+  position: relative;
+  z-index: 10;
+}
+.adminName {
+  margin-top: 75px;
+}
+
+.adminName h5 {
+  font-size: 18px;
+  margin: 5px 0px;
+  font-weight: 600;
+}
+
+.adminName h4 {
+  margin-top: 10px;
+  font-size: 15px;
+  font-weight: 400;
+}
+
+.adminName::before {
+  content: "";
+  width: 21%;
+  height: 0.5px;
+  background-color: black;
+  display: inline-block;
+  position: absolute;
+  bottom: 60px;
+  left: 40%;
+  z-index: 3;
+}
+
+.design1::before {
+  /* horizontal top */
+  content: "";
+  width: 83%;
+  height: 27px;
+  top: 0px;
+  left: -10%;
+  position: absolute;
+  background-color: rgb(0, 33, 68);
+  transform: skew(-45deg);
+  z-index: 1;
+}
+
+.design1::after {
+  /* horizontal bottom */
+  content: "";
+  width: 73%;
+  height: 55px;
+  bottom: 0px;
+  right: 2%;
+  position: absolute;
+  background-color: rgb(0, 33, 68);
+  transform: skew(-45deg);
+}
+
+.design2::before {
+  /* vertical left */
+  content: "";
+  width: 27px;
+  height: 98%;
+  top: 0px;
+  left: 0px;
+  position: absolute;
+  background-color: rgb(0, 33, 68);
+  transform: skew(0, -45deg);
+  z-index: 1;
+}
+
+.design2::after {
+  /* vertical right */
+
+  content: "";
+  width: 55px;
+  height: 106.5%;
+  bottom: -10%;
+  right: 0px;
+  position: absolute;
+  background-color: rgb(0, 33, 68);
+  transform: skew(0, -45deg);
+}
+
+.design3::before {
+  /* horizontal top */
+  content: "";
+  width: 81.2%;
+  height: 27px;
+  top: 2.8%;
+  left: -10%;
+  position: absolute;
+  background-color: rgb(132, 227, 270);
+  transform: skew(-45deg);
+}
+
+.design3::after {
+  /* vertical left */
+  content: "";
+  width: 27px;
+  height: 95%;
+  top: 0px;
+  left: 2%;
+  position: absolute;
+  background-color: rgb(132, 227, 270);
+  transform: skew(0, -45deg);
+}
+.triangle::after {
+  content: "";
+  width: 11%;
+  height: 100px;
+  bottom: 0px;
+  right: 1.7%;
+  position: absolute;
+  background-color: rgb(132, 227, 270);
+  transform: skew(0, -45deg);
+}
+
+@media print {
+  .logo {
+    width: 40%;
+  }
+
+  .certiComp {
+    margin-top: 30px;
+  }
+
+  .certiComp h2,
+  .certiComp h6,
+  .certiComp h4 {
+    margin-bottom: 15px;
+  }
+
+  .certiComp h2 {
+    font-size: 3.3vw;
+  }
+  .certiComp h6 {
+    font-size: 1.5vw;
+  }
+
+  .certiComp h4 {
+    font-size: 2.3vw;
+  }
+
+  .text {
+    margin: 20px 0px;
+  }
+
+  .text h5,
+  .text p {
+    font-size: 1.5vw;
+    margin-bottom: 15px;
+  }
+
+  .sign {
+    margin-top: 40px;
+  }
+  .adminName {
+    margin-top: 70px;
+  }
+
+  .adminName h5,
+  .adminName h4 {
+    font-size: 1.5vw;
+  }
+
+  .adminName::before {
+    height: 1px;
+    bottom: 65px;
+    left: 35%;
+    width: 30%;
+  }
+
+  .design1::before {
+    height: 35px;
+  }
+
+  .design1::after {
+    bottom: -0.06%;
+    right: -5.4%;
+    height: 70px;
+  }
+
+  .design2::before {
+    height: 98%;
+    width: 35px;
+  }
+
+  .design2::after {
+    top: 4.2%;
+    right: 0%;
+    width: 70px;
+    height: 92.7%;
+  }
+
+  .design3::before {
+    top: 4%;
+    left: -11%;
+    height: 35px;
+  }
+
+  .design3::after {
+    height: 94.2%;
+    left: 2.7%;
+    width: 35px;
+  }
+
+  .triangle::after {
+    width: 9%;
+    height: 75px;
+    bottom: 5.67%;
+    right: 2.8%;
+  }
+}
+
+@media only screen and (max-width: 1440px) {
+  .container {
+    margin: 0px 14.5%;
+  }
+
+  .logo {
+    width: 30%;
+    margin-top: 50px;
+  }
+
+  .certiComp {
+    margin-top: 10px;
+  }
+
+  .certiComp h2,
+  .certiComp h6,
+  .certiComp h4 {
+    margin-bottom: 10px;
+  }
+
+  .certiComp h2 {
+    font-size: 2.9vw;
+  }
+  .certiComp h6 {
+    font-size: 1vw;
+  }
+
+  .certiComp h4 {
+    font-size: 1.9vw;
+  }
+
+  .text {
+    margin: 10px 0px;
+  }
+
+  .text h5,
+  .text p {
+    font-size: 1.1vw;
+    margin-bottom: 10px;
+  }
+
+  .sign {
+    margin-top: 60px;
+  }
+  .adminName {
+    margin-top: 60px;
+  }
+
+  .adminName h5,
+  .adminName h4 {
+    font-size: 1.1vw;
+    margin-top: 5px;
+  }
+
+  .adminName::before {
+    height: 1px;
+    bottom: 50px;
+    left: 37.5%;
+    width: 25%;
+  }
+
+  .design1::before {
+    height: 25px;
+  }
+
+  .design1::after {
+    bottom: -9.5%;
+    right: -6.1%;
+    height: 50px;
+  }
+
+  .design2::before {
+    height: 105.7%;
+    width: 25px;
+  }
+
+  .design2::after {
+    top: 4.1%;
+    right: -7.8%;
+    width: 50px;
+    height: 108.7%;
+  }
+
+  .design3::before {
+    top: 4%;
+    left: -9.9%;
+    height: 25px;
+  }
+
+  .design3::after {
+    height: 101.8%;
+    left: 1.7%;
+    width: 25px;
+  }
+
+  .triangle::after {
+    width: 7%;
+    height: 64px;
+    bottom: -3.6%;
+    right: -6.9%;
+  }
+}
+
+@media only screen and (max-width: 1024px) {
+  .container {
+    margin: 0px 12.5%;
+    width: 75%;
+  }
+
+  .logo {
+    width: 33%;
+    margin-top: 20px;
+  }
+
+  .certiComp {
+    margin-top: 12px;
+  }
+
+  .certiComp h2,
+  .certiComp h6,
+  .certiComp h4 {
+    margin-bottom: 10px;
+  }
+
+  .certiComp h2 {
+    font-size: 3.1vw;
+  }
+  .certiComp h6 {
+    font-size: 1.3vw;
+  }
+
+  .certiComp h4 {
+    font-size: 2.1vw;
+  }
+
+  .text {
+    margin: 10px 0px;
+  }
+
+  .text h5,
+  .text p {
+    font-size: 1.3vw;
+    margin-bottom: 9px;
+  }
+
+  .sign {
+    margin-top: 70px;
+  }
+  .adminName {
+    margin-top: 55px;
+  }
+
+  .adminName h5,
+  .adminName h4 {
+    font-size: 1.3vw;
+    margin-top: 5px;
+  }
+
+  .adminName::before {
+    height: 1px;
+    bottom: 50px;
+    left: 35%;
+    width: 30%;
+  }
+
+  .design1::before {
+    height: 17px;
+  }
+
+  .design1::after {
+    bottom: 0%;
+    right: -5.4%;
+    height: 34px;
+    width: 78%;
+  }
+
+  .design2::before {
+    height: 98%;
+    width: 17px;
+  }
+
+  .design2::after {
+    top: 3.5%;
+    right: 0%;
+    width: 34px;
+    height: 98.7%;
+  }
+
+  .design3::before {
+    top: 2.5%;
+    left: -10.5%;
+    height: 17px;
+  }
+
+  .design3::after {
+    height: 96%;
+    left: 2%;
+    width: 17px;
+  }
+
+  .triangle::after {
+    width: 13%;
+    height: 67px;
+    bottom: 2.47%;
+    right: 0.3%;
+  }
+}
+
+
+@media only screen and (max-width: 768px) {
+  .design3::after {
+    height: 1.4%;
+    left: 2%;
+    width: 17px;
+  } 
+  .design3::before {
+    top: 1.5%;
+    left: -10.5%;
+    height: 17px;
+  }
+}
+@media print {
+            * {
+                overflow: hidden;
+            }
+        }
+</style>
+<div class="col-lg-12">
+  <div class="card">
+    <div class="card-body">
+      <div class="container design1 contDisp">
+        <div class="design2">
+          <div class="design3"></div>
+          <div class="mainFlex allCenter">
+            <div class="logo">
+              <img src="https://krishna.hntechno.com/uploads/companydetail/1658930039795.png" alt="HNTechno" />
+            </div>
+          </div>
+          <div class="certiComp">
+            <h2>certification of trainin</h2>
+            <h6>
+              This is to inform whomsoever it may concern and certify that
+            </h6>
+            <h4>{{this.name}}</h4>
+          </div>
+          <div class="text">
+            <h5>
+              has completed(<b
+              *ngFor="let ss of std.student_course; let i = index"
+            >
+              {{ this.area }},</b
+            >)
+               at <b>HN Techno</b> from
+              <br />
+              <b> January, 2022 to August, 2022</b>.
+            </h5>
+            <p>
+              He has successfully completed the
+              <b>Phase-I & Phase-II</b> in <b>HN Techno Training</b>. He
+              demonstrated good skill with a self motivated attitude to learn
+              new things.
+            </p>
+            <p>
+              The company will not provide any type of source Code out side the
+              premises. The management wish them good luck for future.
+            </p>
+
+            <h5>
+              Awarded this
+              <b>{{this.redate}}</b>
+            </h5>
+          </div>
+          <div class="sign">
+            <div class="adminName">
+              <h5>Vijay Prajapati</h5>
+              <h4>CEO and Founder of Hn Techno</h4>
+            </div>
+          </div>
+          <div class="triangle"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

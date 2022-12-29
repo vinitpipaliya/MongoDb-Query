@@ -1,0 +1,29 @@
+{
+  "dependencies": {
+    "body-parser": "^1.20.1",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "fs": "^0.0.1-security",
+    "handlebars": "^4.7.7",
+    "html-pdf-node": "^1.0.8",
+    "locate-chrome": "^0.1.1",
+    "mongoose": "^6.8.0",
+    "nodemailer": "^6.8.0",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7",
+    "pdf-creator-node": "^2.3.5",
+    "puppeteer": "^19.4.1",
+    "puppeteer-core": "^19.4.1",
+    "util": "^0.12.5"
+  },
+  "name": "query",
+  "version": "1.0.0",
+  "description": "\"learn query\"",
+  "main": "app.js",
+  "scripts": {
+    "start": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "V R Pipaliya",
+  "license": "ISC"
+}
