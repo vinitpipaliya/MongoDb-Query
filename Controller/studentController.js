@@ -439,3 +439,237 @@ exports.streamVideo = (req, res) => {
         fs.createReadStream(filePath).pipe(res);
     }
 }
+
+exports.findSumOfPaidInstallment = (req, res) => {
+    try {
+        studentModel.aggregate([
+            {
+                $lookup: {
+                    from: "installments",
+                    localField: "_id",
+                    foreignField: "student_id",
+                    as: 'installments',
+                    pipeline: [{ $project: { amount: 1 } }]
+                }
+            },
+            {
+                $project: {
+                    name: 1,
+                    fees: 1,
+                    installments: 1,
+                },
+            },
+            {
+                $unwind: {
+                    path: "$installments",
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    SumOfPaidAmount: { $sum: "$installments.amount" }
+                }
+            }
+        ]).exec((err, data) => {
+            if (err) {
+                return res.status(400).json({
+                    err: "Not able to aggergate. " + err
+                })
+            }
+            else {
+
+                return res.status(200).send({
+                    DATA: data
+                })
+            }
+        })
+    }
+    catch (err) {
+        return res.status(400).json({
+            err: "Problem :" + err
+        })
+    }
+}
+
+exports.findSumOfPendingInstallment = (req, res) => {
+    try {
+        studentModel.aggregate([
+            {
+                $lookup: {
+                    from: "installments",
+                    localField: "_id",
+                    foreignField: "student_id",
+                    as: "installments",
+                    pipeline: [{ $project: { amount: 1 } }]
+                }
+            },
+            {
+                $project: {
+                    name: 1,
+                    fees: 1,
+                    installments: 1
+                }
+            },
+            {
+                $unwind: {
+                    path: "$fees",
+                    path: "$installments",
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    sumOffees: { $sum: "$fees" },
+                    sumOfInst: { $sum: "$installments.amount" },
+                }
+            },
+            {
+                $project: {
+                    SumOfPenInst: { $subtract: ["$sumOffees", "$sumOfInst"] }
+                }
+            }
+        ]).exec((err, data) => {
+            if (err) {
+                return res.status(400).json({
+                    err: "Not able to FInd in database. " + err
+                })
+            }
+            else {
+                return res.status(200).send({
+                    DATA: data
+                })
+            }
+        })
+    }
+    catch (err) {
+        return res.status(400).json({
+            err: "Problem :" + err
+        })
+    }
+}
+
+exports.totalPaidInstBetDates = (req, res) => {
+    try {
+        const { fd, sd } = req.body
+        const fdate = new Date(fd)
+        const sdate = new Date(sd)
+        studentModel.aggregate([
+            {
+                $lookup: {
+                    from: "installments",
+                    localField: "_id",
+                    foreignField: "student_id",
+                    as: "installments",
+                    pipeline: [{ $project: { amount: 1, date: 1 } }, {
+                        $match: {
+                            date: {
+                                $gte: fdate,
+                                $lte: sdate
+                            }
+                        }
+                    }]
+                }
+            },
+            {
+                $project: {
+                    name: 1,
+                    installments: 1,
+                }
+            },
+            {
+                $unwind: {
+                    path: "$installments",
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    sumOfInst: { $sum: "$installments.amount" }
+                }
+            },
+        ]).exec((err, data) => {
+            if (err) {
+                return res.status(400).json({
+                    err: "Not able to aggeregate. " + err
+                })
+            }
+            else {
+                return res.status(200).send({
+                    DATA: data
+                })
+            }
+        })
+    }
+    catch (err) {
+        return res.status(400).json({
+            err: "Problem :" + err
+        })
+    }
+}
+
+exports.totalPendingInstBetDate = (req, res) => {
+    try {
+        const { fd, sd } = req.body
+        const fdate = new Date(fd)
+        const sdate = new Date(sd)
+        studentModel.aggregate([
+            {
+                $lookup: {
+                    from: "installments",
+                    localField: "_id",
+                    foreignField: "student_id",
+                    as: "installments",
+                    pipeline: [{ $project: { amount: 1, date: 1 } }, {
+                        $match: {
+                            date: {
+                                $gte: fdate,
+                                $lte: sdate
+                            }
+                        }
+                    }]
+                }
+            },
+            {
+                $project: {
+                    name: 1,
+                    fees: 1,
+                    installments: 1
+                }
+            },
+            {
+                $unwind: {
+                    path: "$fees",
+                    path: "$installments"
+                }
+            },
+            {
+                $group: {
+                    _id: null,
+                    sumOffees: { $sum: "$fees" },
+                    sumOfInst: { $sum: "$installments.amount" }
+                }
+            },
+            {
+                $project: {
+                    SumOfPendInst: { $subtract: ["$sumOffees", "$sumOfInst"] }
+                }
+            }
+        ]).exec((err, data) => {
+            if (err) {
+                return res.status(400).json({
+                    err: "Not able to aggeregate. " + err
+                })
+            }
+            else {
+                return res.status(200).send({
+                    DATA: data
+                })
+            }
+        })
+    }
+    catch (err) {
+        return res.status(400).json({
+            err: "Problem : " + err
+        })
+    }
+}   
